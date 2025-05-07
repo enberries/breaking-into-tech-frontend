@@ -2,6 +2,75 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
 
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+### Node.js and npm
+
+Node.js is required to run Angular applications. To check if you have Node.js installed:
+
+```bash
+node --version
+npm --version
+```
+
+If Node.js is not installed, follow these steps:
+
+#### Linux (Ubuntu/Debian):
+```bash
+# Using apt
+sudo apt update
+sudo apt install nodejs npm
+
+# Verify installation
+node --version
+npm --version
+```
+
+#### macOS:
+```bash
+# Using Homebrew
+brew install node
+
+# Verify installation
+node --version
+npm --version
+```
+
+#### Windows:
+1. Download the installer from [Node.js official website](https://nodejs.org/)
+2. Run the installer and follow the installation wizard
+3. Verify installation by opening Command Prompt:
+```bash
+node --version
+npm --version
+```
+
+### Angular CLI
+
+Once Node.js is installed, you need to install the Angular CLI:
+
+```bash
+# Install Angular CLI globally
+npm install -g @angular/cli
+
+# Verify installation
+ng version
+```
+
+## Project Setup
+
+After installing the prerequisites, set up the project:
+
+```bash
+# Navigate to the project directory
+cd path/to/breaking-into-code/frontend
+
+# Install project dependencies
+npm install
+```
+
 ## Development server
 
 To start a local development server, run:
@@ -11,6 +80,12 @@ ng serve
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+Alternatively, you can use npm:
+
+```bash
+npm start
+```
 
 ## Code scaffolding
 
