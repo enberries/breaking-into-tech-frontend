@@ -2,6 +2,21 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.10.
 
+## Getting Started
+
+### Cloning the Repository
+
+```bash
+# Clone the repository
+git clone https://github.com/username/breaking-into-code.git
+
+# Navigate to the project directory
+cd breaking-into-code/frontend
+
+# Install dependencies
+npm install
+```
+
 ## Prerequisites
 
 Before you begin, ensure you have the following installed:
@@ -61,7 +76,38 @@ ng test
 
 ## Deployment
 
-To deploy the application using PM2:
+### Full Deployment Process
+
+For a complete deployment from scratch:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/username/breaking-into-code.git
+
+# 2. Navigate to the project directory
+cd breaking-into-code/frontend
+
+# 3. Install dependencies
+npm install
+
+# 4. Build the application for production
+ng build --prod
+
+# 5. Install PM2 if needed
+npm install -g pm2
+
+# 6. Deploy using PM2
+# For development:
+pm2 start "ng serve" --name breaking-into-code
+
+# For production (if using a static file server like 'serve'):
+# npm install -g serve
+# pm2 start serve --name breaking-into-code -- -s dist/frontend/browser -l 4200
+```
+
+### Quick Deployment
+
+If you've already set up the project and just need to deploy:
 
 ```bash
 # Option 1: Direct PM2 command
