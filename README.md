@@ -6,129 +6,94 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 Before you begin, ensure you have the following installed:
 
-### Node.js and npm
+- **Node.js and npm**: Required to run Angular applications
+- **Angular CLI**: Install globally with `npm install -g @angular/cli`
+- **PM2**: For deployment, install globally with `npm install -g pm2`
 
-Node.js is required to run Angular applications. To check if you have Node.js installed:
+### Upgrading Node.js Using NVM
+
+NVM (Node Version Manager) is recommended for managing Node.js versions. To upgrade Node.js using NVM:
 
 ```bash
+# Install NVM (if not already installed)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
+# Reload shell configuration
+source ~/.bashrc  # or source ~/.zshrc for Zsh users
+
+# Install a specific Node.js version
+nvm install 22.16.0  # or another version
+
+# Use the installed version
+nvm use 22.16.0
+
+# Set it as default (optional)
+nvm alias default 22.16.0
+
+# Verify the active Node.js version
 node --version
-npm --version
 ```
 
-If Node.js is not installed, follow these steps:
-
-#### Linux (Ubuntu/Debian):
-```bash
-# Using apt
-sudo apt update
-sudo apt install nodejs npm
-
-# Verify installation
-node --version
-npm --version
-```
-
-#### macOS:
-```bash
-# Using Homebrew
-brew install node
-
-# Verify installation
-node --version
-npm --version
-```
-
-#### Windows:
-1. Download the installer from [Node.js official website](https://nodejs.org/)
-2. Run the installer and follow the installation wizard
-3. Verify installation by opening Command Prompt:
-```bash
-node --version
-npm --version
-```
-
-### Angular CLI
-
-Once Node.js is installed, you need to install the Angular CLI:
+## Quick Start
 
 ```bash
-# Install Angular CLI globally
-npm install -g @angular/cli
-
-# Verify installation
-ng version
-```
-
-## Project Setup
-
-After installing the prerequisites, set up the project:
-
-```bash
-# Navigate to the project directory
-cd path/to/breaking-into-code/frontend
-
-# Install project dependencies
+# Install dependencies
 npm install
-```
 
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-Alternatively, you can use npm:
-
-```bash
+# Start development server
 npm start
 ```
 
-## Code scaffolding
+Visit `http://localhost:4200/` in your browser.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Development
 
 ```bash
+# Generate a new component
 ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
+# Build the project
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
+# Run unit tests
 ng test
 ```
 
-## Running end-to-end tests
+## Deployment
 
-For end-to-end (e2e) testing, run:
+To deploy the application using PM2:
 
 ```bash
-ng e2e
+# Option 1: Direct PM2 command
+pm2 start "ng serve" --name breaking-into-code
+
+# Option 2: Using the deployment script
+chmod +x deploy.sh
+./deploy.sh
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The deployment script will:
+- Check if PM2 is installed and install it if needed
+- Stop any existing instances of the application
+- Start the application with PM2
+- Save the PM2 configuration
+
+### PM2 Management
+
+```bash
+# Check status
+pm2 status
+
+# View logs
+pm2 logs breaking-into-code
+
+# Restart the application
+pm2 restart breaking-into-code
+
+# Stop the application
+pm2 stop breaking-into-code
+```
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+For more information, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
