@@ -1,1 +1,61 @@
-<p>login works!</p>
+<div class="login-container">
+    <div class="login-card">
+        <div class="logo">
+            <!-- Replace Google logo with a custom code-related logo -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 250 250">
+                <path d="M125 30L31.9 63.2l14.2 123.1L125 230l78.9-43.7 14.2-123.1z" fill="#DD0031" />
+                <path d="M125 30v22.2-.1V230l78.9-43.7 14.2-123.1L125 30z" fill="#C3002F" />
+                <path d="M125 52.1L66.8 182.6h21.7l11.7-29.2h49.4l11.7 29.2H183L125 52.1zm17 83.3h-34l17-40.9 17 40.9z"
+                    fill="#FFFFFF" />
+            </svg>
+        </div>
+
+        <h1 class="title">{{ step === 'email' ? 'Sign in' : 'Welcome' }}</h1>
+        <p class="subtitle" *ngIf="step === 'email'">Enter your account details</p>
+        <p class="subtitle" *ngIf="step === 'password'">{{ userEmail }}</p>
+
+        <form [formGroup]="loginForm" (ngSubmit)="step === 'email' ? onNextStep() : onLogin()">
+            <div class="form-field" *ngIf="step === 'email'">
+                <label for="email">Email or phone</label>
+                <input type="email" id="email" formControlName="email" autocomplete="email">
+                <div class="error-message" *ngIf="emailControl?.invalid && emailControl?.touched">
+                    Please enter a valid email address
+                </div>
+            </div>
+
+            <div class="form-field" *ngIf="step === 'password'">
+                <label for="password">Password</label>
+                <input type="password" id="password" formControlName="password" autocomplete="current-password">
+                <div class="error-message" *ngIf="passwordControl?.invalid && passwordControl?.touched">
+                    Password must be at least 6 characters
+                </div>
+            </div>
+
+            <div class="error-alert" *ngIf="error">{{ error }}</div>
+
+            <div class="form-options">
+                <a href="javascript:void(0)" class="option-link">
+                    {{ step === 'email' ? 'Forgot email?' : 'Forgot password?' }}
+                </a>
+
+                <div class="spacer"></div>
+
+                <button *ngIf="step === 'password'" type="button" class="back-button" (click)="onBack()">
+                    Back
+                </button>
+
+                <button type="submit" class="next-button" [disabled]="(step === 'email' && emailControl?.invalid) || 
+                       (step === 'password' && passwordControl?.invalid) || 
+                       loading">
+                    {{ step === 'email' ? 'Next' : 'Sign in' }}
+                    <div class="loader" *ngIf="loading"></div>
+                </button>
+            </div>
+        </form>
+
+        <div class="create-account">
+            <span>Don't have an account?</span>
+            <a (click)="navigateToRegister()" class="create-link">Create account</a>
+        </div>
+    </div>
+</div>
